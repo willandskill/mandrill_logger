@@ -1,4 +1,5 @@
-Welcome to the mandrill_logger wiki!
+Mandrill Logger is a simple app to log the communication with mandrill.
+Sometimes we want to log the emails on our end instead of giving users access to the mandrill-account. This also allows us to follow up on user emails that are being rejected or marked as spam.
 
 # Installation
 
