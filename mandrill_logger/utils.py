@@ -36,8 +36,8 @@ class MandrillLogger():
         _data['user'] = self.get_user_from_email(mandrill_response['email'])
         _data['mandrill_id'] = mandrill_response['_id']
         _data['meta_data'] = mandrill_response
-        _data['status'] = self.get_status_enum(mandrill_response['status'])
-        _data['reason'] = self.get_reason_enum(mandrill_response['reject_reason'])
+        _data['status'] = self.get_status_enum(mandrill_response.get('status', None))
+        _data['reason'] = self.get_reason_enum(mandrill_response.get('reject_reason', None))
         _data['template'] = email.template_name
         self.save_log(_data)
 
