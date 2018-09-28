@@ -31,15 +31,16 @@ class MandrillLogger():
 
     def log_email(self, email):
         mandrill_response = email.mandrill_response[0]
-        _data = {}
-        _data['email'] = mandrill_response['email']
-        _data['user'] = self.get_user_from_email(mandrill_response['email'])
-        _data['mandrill_id'] = mandrill_response['_id']
-        _data['meta_data'] = mandrill_response
-        _data['status'] = self.get_status_enum(mandrill_response.get('status', None))
-        _data['reason'] = self.get_reason_enum(mandrill_response.get('reject_reason', None))
-        _data['template'] = email.template_name
-        self.save_log(_data)
+        for recipient in email.to:
+            _data = {}
+            _data['email'] = recipient
+            _data['user'] = self.get_user_from_email(recipient)
+            _data['mandrill_id'] = mandrill_response['_id']
+            _data['meta_data'] = mandrill_response
+            _data['status'] = self.get_status_enum(mandrill_response.get('status', None))
+            _data['reason'] = self.get_reason_enum(mandrill_response.get('reject_reason', None))
+            _data['template'] = email.template_name
+            self.save_log(_data)
 
     def save_log(self, _data):
         Log.objects.create(**_data)
