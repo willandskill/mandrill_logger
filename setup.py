@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='mandrill-logger',
-    version='0.0.6',
+    version='0.0.7',
     author=u'Will & Skill',
     author_email='info@willandskill.se',
     packages=find_packages(),
