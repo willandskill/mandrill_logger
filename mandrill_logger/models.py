@@ -8,7 +8,7 @@ from .enums import LogReason, LogStatus
 
 class Log(models.Model):
     email = models.CharField(max_length=255)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     mandrill_id = models.CharField(max_length=511, blank=True, null=True)
     meta_data = models.TextField()
     status = fields.SelectIntegerField(blueprint=LogStatus, default=LogStatus.DEFAULT, db_index=True)
