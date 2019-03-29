@@ -55,7 +55,7 @@ class MandrillLogger():
         try:
             return user.objects.get(email=email)
         except Exception as e:
-            print e
+            print(e)
             return None
 
     def get_reason_enum(self, reason):
